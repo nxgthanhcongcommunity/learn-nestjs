@@ -1,11 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { RedisService } from "../redis/redis.service";
+import { OrderService } from "../order/order.service";
 
 @Injectable()
 export class DealService {
 
     constructor(
-        private readonly redisService: RedisService
+        private readonly redisService: RedisService,
+        private readonly orderService: OrderService
     ) {
 
     }
@@ -24,6 +26,13 @@ export class DealService {
                 message: "Out of stock"
             }
         }
+
+        // create the order
+        const order = await this.orderService.createOrder({
+            productId,
+            userId,
+            quantity: 1
+        });
 
         // process the deal
         return {
