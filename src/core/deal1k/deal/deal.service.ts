@@ -1,13 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { RedisService } from "../redis/redis.service";
 import { OrderService } from "../order/order.service";
+import { RabbitMQPublisher } from "../rabitmq/rabitmq.producer";
 
 @Injectable()
 export class DealService {
 
     constructor(
         private readonly redisService: RedisService,
-        private readonly orderService: OrderService
+        private readonly orderService: OrderService,
+        private readonly rabbitMQPublisher: RabbitMQPublisher
     ) {
 
     }
@@ -27,8 +29,7 @@ export class DealService {
             }
         }
 
-        // create the order
-        const order = await this.orderService.createOrder({
+        await this.rabbitMQPublisher.publishOrder({
             productId,
             userId,
             quantity: 1
