@@ -34,5 +34,12 @@
 + Dynamic module: resolve by current options, overide defaut decorator @Module({})
 
 
+### Middlewares 
 
++ before routing, req res next()
++ thứ tự chạy khác so với .NET
++ can apply for route, exlude routes, for method (.NET apply full)
++ Middleware consumer: manage middleware chain. or app.user({{middlware}})
++ function middleware, class middleware
+![alt text](image-1.png)
 

@@ -21,7 +21,7 @@ import { UpdateDogDto } from './dto/update-dog.dto';
   path: 'dogs',
 })
 export class DogController {
-  constructor(private readonly dogService: DogService) {}
+  constructor(private readonly dogService: DogService) { }
 
   @Get('test1')
   test1(@Param() params: any, @Res() res: Response) {
@@ -44,7 +44,7 @@ export class DogController {
   @HttpCode(500)
   @Header('Cache-Control', 'no-store')
   findAll(@Req() request: Request) {
-    console.log(request);
+    console.log("middle");
     return this.dogService.findAll();
   }
 
