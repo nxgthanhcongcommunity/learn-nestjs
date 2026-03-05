@@ -43,3 +43,67 @@
 + function middleware, class middleware
 ![alt text](image-1.png)
 
+### Exception Filter
+
+### Pipes
+
++ Transform data
++ Validate data before route
+
+### Guard
++ CanActive?(): boolean
++ Roles base authorize
+
+### Interceptor
++ before() -> handle() -> after()
++ transform response, 
+
+### Custom decorator 
+``` js
+    {
+        provide: 'service đại diện',
+        useValue: null,
+        useClass: null,
+        useFactory: 'function có hoặc k có DI'
+    }
+```
+
++ provider thường: Class -> Class
++ asycn + useFactory: for async init
+
+### Dynamic Module
++ function từ class nào đó tạo ra các keys của 1 @Module decorator
++ được cấu hình lúc Import
+
+
+
+### Injection scope:
++ CatsController <- CatsService <- CatsRepository: if CatsService is scope -> Controller scoped too.
++ Ngắn giữ dài: ok. Dài giữ ngắn -> ngắn
++ If cicular => use forwardRef
+
+
+### Module ref
++ get: singleton
++ resolve: scoped & transient: mỗi lần gọi tạo instance mới hoac instance cu~: ContextIdFactory
+
+### Lazy module
+
+### Excution Context
++ Thông tin Request, Handler, Response hiện tại: ExcutionContext & ArgumentHost
+![alt text](image-2.png)
++ Reflector: đọc decorator từ class
+
+### LifeCircle hooks
+![alt text](image-3.png)
+
+### Discovery Service
++ DiscoveryService = runtime scanner của NestJS container
++ Usecase:
+    ``` js
+    plugin system
+    framework extension
+    auto registration
+    custom decorators system
+    ```
+
